@@ -25,10 +25,10 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
 To run the program, use:
 ./a.out (./atlas-printf)
 
+[Back to Table of Cotents](#table-of-contents)
 
 ## Examples
 <a name="examples"></a>
-[Back to Table of Contents](#table-of-contents)
 
 Here are some examples on how to use the '_printf' function:
 
@@ -38,6 +38,7 @@ _printf("Percent: [%%]\n");
 _printf("Integer: [%d]\n", 42);
 _printf("Negative integer: [%d\n", -42);
 
+[Back to Table of Cotents](#table-of-contents)
 
 ## Authors
 <a name="authors"></a>
@@ -45,3 +46,5 @@ _printf("Negative integer: [%d\n", -42);
 Natalie Richie
 James Hamby
 Ari Williams
+
+[Back to Table of Cotents](#table-of-contents)

@@ -31,10 +31,10 @@ To run the program, use:
 
 Here are some examples on how to use the '_printf' function:
 
-_printf("Character: [%c}\n", 'H');
-_printf("String: [%s]\n", "Hello, World!");
-_printf("Percent: [%%]\n");
-_printf("Integer: [%d]\n", 42);
+_printf("Character: [%c}\n", 'H'); <br>
+_printf("String: [%s]\n", "Hello, World!"); <br>
+_printf("Percent: [%%]\n"); <br>
+_printf("Integer: [%d]\n", 42); <br>
 _printf("Negative integer: [%d\n", -42);
 
 [Back to Table of Cotents](#table-of-contents)
@@ -42,8 +42,8 @@ _printf("Negative integer: [%d\n", -42);
 ## Authors
 <a name="authors"></a>
 
-Natalie Richie
-James Hamby
+Natalie Richie <br>
+James Hamby <br>
 Ari Williams
 
 [Back to Table of Cotents](#table-of-contents)

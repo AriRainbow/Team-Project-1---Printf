@@ -20,10 +20,9 @@ To compile the code, use the following command:
 
 ```bash
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
-(-o atlas-printf) Alternate compile command ?? Is this allowed?
 
 To run the program, use:
-./a.out (./atlas-printf)
+./a.out
 
 [Back to Table of Cotents](#table-of-contents)
 

@@ -20,7 +20,7 @@ To compile the code, use the following command:
 
 ```bash
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
-
+```
 To run the program, use:
 ./a.out
 

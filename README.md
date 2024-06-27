@@ -27,6 +27,9 @@ To run the program, use:
 
 
 ## Examples
+<a name="examples"></a>
+[Back to Table of Contents](#table-of-contents)
+
 Here are some examples on how to use the '_printf' function:
 
 _printf("Character: [%c}\n", 'H');
@@ -37,6 +40,8 @@ _printf("Negative integer: [%d\n", -42);
 
 
 ## Authors
+<a name="authors"></a>
+
 Natalie Richie
 James Hamby
 Ari Williams

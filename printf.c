@@ -18,7 +18,25 @@ int _printf(const char *format, ...)
 	/* initialize va_list with format argument */
 	va_start(args, format);
 
-	/* code */
+	/* iterate over format string */
+	while (*format)
+	{
+		if (*format == '%') /* looking for specifier */
+		{
+			format++; /* move to char after '%' */
+			switch (*format) /* replaces if/else */
+			{
+				case 'c': /* handle char specifier */
+					/* get char argument */
+					char_arg = va_arg(args, int);
+					/* print char argument */
+						write(1, &char_arg, 1);
+						count++; /* char printed */
+						break;
+
+				case 's': /* handle string specifier */
+					/* get string argument */
+					str_arg = va_arg(args, char *);
 
 	va_end(args); /* clean up va_list */
 	return (count);

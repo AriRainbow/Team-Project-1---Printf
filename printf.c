@@ -56,7 +56,13 @@ int _printf(const char *format, ...)
 					break;
 			}
 		}
-
+		else
+		{
+			write(1, format, 1); /* regular char */
+			count++
+		}
+		format++; /* next char in format string */
+	}
 
 	va_end(args); /* clean up va_list */
 	return (count);

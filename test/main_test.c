@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	-printf("Characters: [%c]\n", "H");
+	_printf("Characters: [%c]\n", "H");
 	_printf("String: [%s]\n", "Hello, World!");
 	_printf("Percent: [%%]\n");
 	_printf("Integer: [%d]\n", 42);

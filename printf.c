@@ -1,5 +1,6 @@
 #include "main.h"
-#include <stdarg.h>
+#include <stdarg.h> 
+#include <unistd.h> /* write func */
 
 /**
  * _printf - Custom printf function
@@ -59,7 +60,7 @@ int _printf(const char *format, ...)
 		else
 		{
 			write(1, format, 1); /* regular char */
-			count++
+			count++;
 		}
 		format++; /* next char in format string */
 	}

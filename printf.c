@@ -30,13 +30,33 @@ int _printf(const char *format, ...)
 					/* get char argument */
 					char_arg = va_arg(args, int);
 					/* print char argument */
-						write(1, &char_arg, 1);
-						count++; /* char printed */
-						break;
+					write(1, &char_arg, 1);
+					count++; /* char printed */
+					break;
 
 				case 's': /* handle string specifier */
 					/* get string argument */
 					str_arg = va_arg(args, char *);
+					while (*str_arg) /* bc str */
+					{
+						write(1, str_arg, 1);
+						str_arg++;
+						count++;
+					}
+					break;
+
+				case '%': /* handle literal '%' char */
+					write(1, "%", 1); /* print */
+					count++;
+					break;
+
+				default: /* for unknown specifier */
+					write(1, format, 1); /* as is */
+					count++;
+					break;
+			}
+		}
+
 
 	va_end(args); /* clean up va_list */
 	return (count);

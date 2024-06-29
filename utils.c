@@ -25,7 +25,7 @@ void print_number(int n, int *count)
 		print_number(num / 10, count);
 	}
 
-	char digit = n % 10 + '0';
+	char digit = num % 10 + '0';
 	write(1, &digit, 1);
 	(*count)++;
 }

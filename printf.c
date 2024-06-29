@@ -1,91 +1,117 @@
 #include "main.h"
-#include <stdarg.h>
-#include <unistd.h> /* write func */
 
 /**
- * _printf - Custom printf function
- * @format: Format string
+ * _printf - Custom implementation of printf function
+ * @format: Format string containing the characters and the specifiers
  *
- * Return: Number of characters printed, excluding null byte
+ * Return: Number of characters printed
  */
-
 int _printf(const char *format, ...)
 {
-	va_list args; /* va_list to hold variable arguments */
-	int count = 0; /* counter for number characters printed */
-	char *str_arg; /* string argument for %s specifier */
-	char char_arg; /* character argument for %c specifier */
-	int int_arg; /* int argument for %d and %i */
-	unsigned int uint_arg; /* unsigned int argument %u */
+    va_list args;
+    int count = 0;
 
-	if (!format)
-		return (-1); /* handle null str */
+    va_start(args, format);
 
-	/* initialize va_list with format argument */
-	va_start(args, format);
+    while (*format)
+    {
+        if (*format == '%')
+        {
+            format++;
+            switch (*format)
+            {
+                case 'c':
+                    print_char(args, &count);
+                    break;
+                case 's':
+                    print_string(args, &count);
+                    break;
+                case '%':
+                    print_percent(&count);
+                    break;
+                case 'd':
+                case 'i':
+                    print_number(va_arg(args, int), &count);
+                    break;
+                case 'u':
+                    print_unsigned(va_arg(args, unsigned int), &count);
+                    break;
+                case 'x':
+                case 'X':
+                    print_hex(args, &count, *format);
+                    break;
+                default:
+                    write(1, "%", 1);
+                    count++;
+                    break;
+            }
+        }
+        else
+        {
+            write(1, format, 1);
+            count++;
+        }
+        format++;
+    }
 
-	/* iterate over format string */
-	while (*format)
-	{
-		if (*format == '%') /* looking for specifier */
-		{
-			format++; /* move to char after '%' */
-			if (!*format)
-				return (-1); /* handle single % */
-			switch (*format) /* replaces if/else */
-			{
-				case 'c': /* handle char specifier */
-					/* get char argument */
-					char_arg = va_arg(args, int);
-					/* print char argument */
-					write(1, &char_arg, 1);
-					count++; /* char printed */
-					break;
+    va_end(args);
+    return count;
+}
 
-				case 's': /* handle string specifier */
-					/* get string argument */
-					str_arg = va_arg(args, char *);
-					if (!str_arg) /* handle null str */
-						str_arg = "(null)";
-					while (*str_arg) /* bc str */
-					{
-						write(1, str_arg, 1);
-						str_arg++;
-						count++;
-					}
-					break;
+void print_char(va_list args, int *count)
+{
+    char c = va_arg(args, int);
+    write(1, &c, 1);
+    (*count)++;
+}
 
-				case 'd': /* handle integer */
-				case 'i': /* handle integer */
-					int_arg = va_arg(args, int);
-					print_number(int_arg, &count);
-					break;
+void print_string(va_list args, int *count)
+{
+    char *str = va_arg(args, char *);
+    while (*str)
+    {
+        write(1, str++, 1);
+        (*count)++;
+    }
+}
 
-				case 'u': /* handle insigned int */
-					uint_arg = va_arg(args, unsigned int);
-					print_unsigned(uint_arg, &count);
-					break;
+void print_percent(int *count)
+{
+    write(1, "%", 1);
+    (*count)++;
+}
 
-				case '%': /* handle literal '%' char */
-					write(STDOUT_FILENO, "%", 1);
-					count++;
-					break;
+void print_number(int n, int *count)
+{
+    unsigned int num;
 
-				default: /* for unknown specifier */
-					write(1, "%", 1);
-					write(1, format, 1); /* as is */
-					count += 2;
-					break;
-			}
-		}
-		else
-		{
-			write(1, format, 1); /* regular char */
-			count++;
-		}
-		format++; /* next char in format string */
-	}
+    if (n < 0)
+    {
+        write(1, "-", 1);
+        (*count)++;
+        num = -n;
+    }
+    else
+    {
+        num = n;
+    }
 
-	va_end(args); /* clean up va_list */
-	return (count);
+    print_unsigned(num, count);
+}
+
+void print_unsigned(unsigned int n, int *count)
+{
+    if (n / 10)
+    {
+        print_unsigned(n / 10, count);
+    }
+
+    char digit = n % 10 + '0';
+    write(1, &digit, 1);
+    (*count)++;
+}
+
+void print_hex(va_list args, int *count, char specifier)
+{
+   /* placeholder */
 }

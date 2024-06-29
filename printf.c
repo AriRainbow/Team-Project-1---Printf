@@ -72,8 +72,9 @@ int _printf(const char *format, ...)
 					break;
 
 				default: /* for unknown specifier */
+					write(1, "%", 1);
 					write(1, format, 1); /* as is */
-					count++;
+					count+= 2;
 					break;
 			}
 		}

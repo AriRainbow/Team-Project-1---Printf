@@ -41,9 +41,7 @@ int _printf(const char *format, ...)
                     print_hex(args, &count, *format);
                     break;
                 default:
-		    write(1, "%", 1);
-                    write(1, format, 1);
-                    count += 2;
+		    format++;
                     break;
             }
         }
@@ -54,7 +52,6 @@ int _printf(const char *format, ...)
         }
         format++;
     }
-
     va_end(args);
     return count;
 }
@@ -110,21 +107,25 @@ void print_number(int n, int *count)
 
 void print_unsigned(unsigned int n, int *count)
 {
-	char digit;
-
-    if (n / 10)
+    char buffer[32];
+    sprintf(buffer, "%u", num);
+    for (size_t i = 0; buffer[i]!= '\0'; i++)
     {
-        print_unsigned(n / 10, count);
+	    write(1, &buffer[i], 1);
+   	    (*count)++;
     }
-
-    digit = n % 10 + '0';
-    write(1, &digit, 1);
-    (*count)++;
 }
 
 void print_hex(va_list args, int *count, char specifier)
 {
-   (void)args;
-   (void)count;
-   (void)specifier;
+   unsigned int num = va_arg(args, unsigned int);
+   char buffer[65];
+   int base = (specifier == 'x')? 16 : 16;
+
+   sprintf(buffer, "%x", num);
+   for (int i = 0; buffer[i]!= "\0'; i++)
+   {
+	   write(1, &buffer[i], 1);
+	   (*count)++;
+   }
 }

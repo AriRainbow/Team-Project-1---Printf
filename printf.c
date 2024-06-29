@@ -68,10 +68,18 @@ void print_char(va_list args, int *count)
 void print_string(va_list args, int *count)
 {
     char *str = va_arg(args, char *);
-    while (*str)
+    if (str == NULL)
     {
-        write(1, str++, 1);
-        (*count)++;
+	    write(1, "(null)", 6);
+	    *count += 6;
+    }
+    else
+    {
+    	while (*str)
+    	{
+        	write(1, str++, 1);
+        	(*count)++;
+    	}
     }
 }
 

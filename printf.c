@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stdarg.h> 
+#include <stdarg.h>
 #include <unistd.h> /* write func */
 
 /**
@@ -54,7 +54,7 @@ int _printf(const char *format, ...)
 						count++;
 					}
 					break;
-				
+
 				case 'd': /* handle integer */
 				case 'i': /* handle integer */
 					int_arg = va_arg(args, int);
@@ -74,7 +74,7 @@ int _printf(const char *format, ...)
 				default: /* for unknown specifier */
 					write(1, "%", 1);
 					write(1, format, 1); /* as is */
-					count+= 2;
+					count += 2;
 					break;
 			}
 		}

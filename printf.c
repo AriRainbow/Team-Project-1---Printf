@@ -54,7 +54,7 @@ int _printf(const char *format, ...)
 					break;
 
 				case '%': /* handle literal '%' char */
-					write(1, "%%", 1); /* print */
+					write(STDOUT_FILENO, "%", 1);
 					count++;
 					break;
 

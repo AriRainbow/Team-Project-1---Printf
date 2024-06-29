@@ -110,6 +110,7 @@ void print_unsigned(unsigned int num, int *count)
 {
     char buffer[32];
     sprintf(buffer, "%u", num);
+
     size_t i;
     for (i = 0; buffer[i]!= '\0'; i++)
     {
@@ -124,8 +125,8 @@ void print_hex(va_list args, int *count, char specifier)
    char buffer[65];
    int base = (specifier == 'x' || specifier == 'X')? 16 : 8;
 
-   sprintf(buffer, "%x", num);
    int i;
+   sprintf(buffer, "%x", num);
    for (i = 0; buffer[i]!= '\0'; i++)
    {
 	   write(1, &buffer[i], 1);

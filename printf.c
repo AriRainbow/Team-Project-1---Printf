@@ -16,6 +16,9 @@ int _printf(const char *format, ...)
 	char *str_arg; /* string argument for %s specifier */
 	char char_arg; /* character argument for %c specifier */
 
+	if (!format)
+		return (-1); /* handle null str */
+
 	/* initialize va_list with format argument */
 	va_start(args, format);
 
@@ -25,6 +28,8 @@ int _printf(const char *format, ...)
 		if (*format == '%') /* looking for specifier */
 		{
 			format++; /* move to char after '%' */
+			if (!*format)
+				return (-1); /* handle single % */
 			switch (*format) /* replaces if/else */
 			{
 				case 'c': /* handle char specifier */
@@ -38,6 +43,8 @@ int _printf(const char *format, ...)
 				case 's': /* handle string specifier */
 					/* get string argument */
 					str_arg = va_arg(args, char *);
+					if (!str_arg) /* handle null str */
+						str_arg = "(null)";
 					while (*str_arg) /* bc str */
 					{
 						write(1, str_arg, 1);

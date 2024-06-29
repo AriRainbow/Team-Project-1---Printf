@@ -15,6 +15,8 @@ int _printf(const char *format, ...)
 	int count = 0; /* counter for number characters printed */
 	char *str_arg; /* string argument for %s specifier */
 	char char_arg; /* character argument for %c specifier */
+	int int_arg; /* int argument for %d and %i */
+	unsigned int uint_arg; /* unsigned int argument %u */
 
 	if (!format)
 		return (-1); /* handle null str */
@@ -51,6 +53,17 @@ int _printf(const char *format, ...)
 						str_arg++;
 						count++;
 					}
+					break;
+				
+				case 'd': /* handle integer */
+				case 'i': /* handle integer */
+					int_arg = va_arg(args, int);
+					print_number(int_arg, &count);
+					break;
+
+				case 'u': /* handle insigned int */
+					uint_arg = va_arg(args, unsigned int);
+					print_unsigned(uint_arg, &count);
 					break;
 
 				case '%': /* handle literal '%' char */

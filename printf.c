@@ -16,34 +16,34 @@ int _printf(const char *format, ...)
     while (*format)
     {
         if (*format == '%')
-        {
-            format++;
-            switch (*format)
-            {
-                case 'c':
-                    print_char(args, &count);
-                    break;
-                case 's':
-                    print_string(args, &count);
-                    break;
-                case '%':
-                    print_percent(&count);
-                    break;
-                case 'd':
-                case 'i':
-                    print_number(va_arg(args, int), &count);
-                    break;
-                case 'u':
-                    print_unsigned(va_arg(args, unsigned int), &count);
-                    break;
-                case 'x':
-                case 'X':
-                    print_hex(args, &count, *format);
-                    break;
-                default:
-		    format++;
-                    break;
-            }
+	{
+		format++;
+       		switch (*format)
+        	{
+                	case 'c':
+                    	print_char(args, &count);
+                    	break;
+                	case 's':
+                    	print_string(args, &count);
+                    	break;
+                	case '%':
+                    	print_percent(&count);
+                    	break;
+                	case 'd':
+                	case 'i':
+                    	print_number(va_arg(args, int), &count);
+                    	break;
+                	case 'u':
+                    	print_unsigned(va_arg(args, unsigned int), &count);
+                    	break;
+                	case 'x':
+                	case 'X':
+                    	print_hex(args, &count, *format);
+                    	break;
+                	default:
+		    	format++;
+                    	break;
+            	}
         }
         else
         {
@@ -120,10 +120,10 @@ void print_hex(va_list args, int *count, char specifier)
 {
    unsigned int num = va_arg(args, unsigned int);
    char buffer[65];
-   int base = (specifier == 'x')? 16 : 16;
+   int base = (specifier == 'x' || specifier == 'X')? 16 : 8;
 
    sprintf(buffer, "%x", num);
-   for (int i = 0; buffer[i]!= "\0'; i++)
+   for (int i = 0; buffer[i]!= '\0'; i++)
    {
 	   write(1, &buffer[i], 1);
 	   (*count)++;

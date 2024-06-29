@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * _printf - Custom implementation of printf function
@@ -105,7 +106,7 @@ void print_number(int n, int *count)
     print_unsigned(num, count);
 }
 
-void print_unsigned(unsigned int n, int *count)
+void print_unsigned(unsigned int num, int *count)
 {
     char buffer[32];
     sprintf(buffer, "%u", num);

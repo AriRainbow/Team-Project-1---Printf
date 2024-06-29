@@ -14,4 +14,8 @@
 
 int _printf(const char *format, ...);
 
+void print_number(int n, int *count);
+
+void print_unsigned(unsigned int n, int *count);
+
 #endif

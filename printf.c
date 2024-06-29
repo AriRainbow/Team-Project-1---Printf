@@ -41,8 +41,9 @@ int _printf(const char *format, ...)
                     print_hex(args, &count, *format);
                     break;
                 default:
-                    write(1, "%", 1);
-                    count++;
+		    write(1, "%", 1);
+                    write(1, format, 1);
+                    count += 2;
                     break;
             }
         }

@@ -89,3 +89,35 @@ int _printf(const char *format, ...)
 	va_end(args); /* clean up va_list */
 	return (count);
 }
+
+void print_number(int n, int *count)
+{
+	unsigned int num;
+
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		(*count)++;
+		num = -n;
+	}
+	else
+	{
+		num = n;
+	}
+
+	print_unsigned(num, count);
+}
+
+void print_unsigned(unsigned int n, int *count)
+{
+	char digit;
+
+	if (n / 10)
+	{
+		print_unsigned(n / 10, count);
+	}
+
+	digit = n % 10 + '\0';
+	write(1, &digit, 1);
+	(count)++;
+}

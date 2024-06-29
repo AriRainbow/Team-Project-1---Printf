@@ -8,6 +8,7 @@
 void print_number(int n, int *count)
 {
 	unsigned int num;
+	char digit;
 
 	if (n < 0)
 	{
@@ -25,7 +26,7 @@ void print_number(int n, int *count)
 		print_number(num / 10, count);
 	}
 
-	char digit = num % 10 + '0';
+	digit = num % 10 + '0';
 	write(1, &digit, 1);
 	(*count)++;
 }
@@ -38,12 +39,14 @@ void print_number(int n, int *count)
 
 void print_unsigned(unsigned int n, int *count)
 {
+	char digit;
+
 	if (n / 10)
 	{
 		print_unsigned(n / 10, count);
 	}
 
-	char digit = n % 10 + '0';
+	digit = n % 10 + '0';
 	write(1, &digit, 1);
 	(*count)++;
 }

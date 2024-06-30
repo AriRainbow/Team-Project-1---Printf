@@ -105,7 +105,7 @@ void handle_int(va_list args, int *count)
 
 void handle_uint(va_list args, int *count)
 {
-	insigned int uint_arg = va_arg(args, unsigned int);
+	unsigned int uint_arg = va_arg(args, unsigned int);
 	print_unsigned(uint_arg, count);
 }
 

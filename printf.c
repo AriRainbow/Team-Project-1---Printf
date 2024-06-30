@@ -2,6 +2,12 @@
 #include <stdarg.h>
 #include <unistd.h> /* write func */
 
+/* helper function prototypes */
+void handle_char(va_list args, int *count);
+void handle_string(va_list args, int *count);
+void handle_int(va_list args, int *count);
+void handle_uint(va_list args, int *count);
+
 /**
  * _printf - Custom printf function
  * @format: Format string
@@ -13,10 +19,6 @@ int _printf(const char *format, ...)
 {
 	va_list args; /* va_list to hold variable arguments */
 	int count = 0; /* counter for number characters printed */
-	char *str_arg; /* string argument for %s specifier */
-	char char_arg; /* character argument for %c specifier */
-	int int_arg; /* int argument for %d and %i */
-	unsigned int uint_arg; /* unsigned int argument %u */
 
 	if (!format)
 		return (-1); /* handle null str */
@@ -34,39 +36,24 @@ int _printf(const char *format, ...)
 				return (-1); /* handle single % */
 			switch (*format) /* replaces if/else */
 			{
-				case 'c': /* handle char specifier */
-					/* get char argument */
-					char_arg = va_arg(args, int);
-					/* print char argument */
-					write(1, &char_arg, 1);
-					count++; /* char printed */
+				case 'c':
+					handle_char(args, &count);
 					break;
 
-				case 's': /* handle string specifier */
-					/* get string argument */
-					str_arg = va_arg(args, char *);
-					if (!str_arg) /* handle null str */
-						str_arg = "(null)";
-					while (*str_arg) /* bc str */
-					{
-						write(1, str_arg, 1);
-						str_arg++;
-						count++;
-					}
+				case 's':
+					handle_string(args, &count);
 					break;
 
-				case 'd': /* handle integer */
-				case 'i': /* handle integer */
-					int_arg = va_arg(args, int);
-					print_number(int_arg, &count);
+				case 'd':
+				case 'i':
+					handle_int(args, &count);
 					break;
 
-				case 'u': /* handle insigned int */
-					uint_arg = va_arg(args, unsigned int);
-					print_unsigned(uint_arg, &count);
+				case 'u':
+					handle_uint(args, &count);
 					break;
 
-				case '%': /* handle literal '%' char */
+				case '%':
 					write(STDOUT_FILENO, "%", 1);
 					count++;
 					break;
@@ -88,6 +75,38 @@ int _printf(const char *format, ...)
 
 	va_end(args); /* clean up va_list */
 	return (count);
+}
+
+void handle_char(va_list args, int *count)
+{
+	char char_arg = va_arg(args, int);
+	write(1, &char_arg, 1);
+	(*count)++;
+}
+
+void handle_string(va_list args, int *count)
+{
+	char *str_arg = va_arg(args, char *);
+	if (!str_arg)
+		str_arg = "(null)";
+	while (*str_arg)
+	{
+		write(1, str_arg, 1);
+		str_arg++;
+		(*count)++;
+	}
+}
+
+void handle_int(va_list args, int *count)
+{
+	int int_arg = va_arg(args, int);
+	print_number(int_arg, count);
+}
+
+void handle_uint(va_list args, int *count)
+{
+	insigned int uint_arg = va_arg(args, unsigned int);
+	print_unsigned(uint_arg, count);
 }
 
 void print_number(int n, int *count)

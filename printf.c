@@ -110,7 +110,7 @@ void handle_uint(va_list args, int *count)
 {
 	unsigned int uint_arg = va_arg(args, unsigned int);
 
-	print_unsigned(uint_arg, count);
+	print_unsigned_int(uint_arg, count);
 }
 
 void print_number(int n, int *count)
@@ -128,16 +128,16 @@ void print_number(int n, int *count)
 		num = (unsigned int)n;
 	}
 
-	print_unsigned(num, count);
+	print_unsigned_int(num, count);
 }
 
-void print_unsigned(unsigned int n, int *count)
+void print_unsigned_int(unsigned int n, int *count)
 {
 	char digit;
 
 	if (n / 10)
 	{
-		print_unsigned(n / 10, count);
+		print_unsigned_int(n / 10, count);
 	}
 
 	digit = (char)((n % 10) + '0');

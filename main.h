@@ -16,7 +16,7 @@ void handle_uint(va_list args, int *count);
 
 void print_number(int n, int *count);
 
-void print_unsigned(unsigned int n, int *count);
+void print_unsigned_int(unsigned int n, int *count);
 
 
 #endif

@@ -77,6 +77,11 @@ int _printf(const char *format, ...)
 	return (count);
 }
 
+/**
+ * handle_char - Handles char specifier
+ * @args: List of arguments
+ * @count: Pointer to count of printed characters
+ */
 void handle_char(va_list args, int *count)
 {
 	char char_arg = va_arg(args, int);
@@ -85,6 +90,11 @@ void handle_char(va_list args, int *count)
 	(*count)++;
 }
 
+/**
+ * handle_string - Handles string specifier
+ * @args: List of arguments
+ * @count: Pointer to count of printed characters
+ */
 void handle_string(va_list args, int *count)
 {
 	char *str_arg = va_arg(args, char *);
@@ -99,6 +109,11 @@ void handle_string(va_list args, int *count)
 	}
 }
 
+/**
+ * handle_int - Handles integer specifier
+ * @args: List of arguments
+ * @count: Pointer to count of printed characters
+ */
 void handle_int(va_list args, int *count)
 {
 	int int_arg = va_arg(args, int);
@@ -106,6 +121,11 @@ void handle_int(va_list args, int *count)
 	print_number(int_arg, count);
 }
 
+/**
+ * handle_uint - Handles unsigned int specifier
+ * @args: List of arguments
+ * @count: Pointer to count of printed characters
+ */
 void handle_uint(va_list args, int *count)
 {
 	unsigned int uint_arg = va_arg(args, unsigned int);
@@ -113,6 +133,11 @@ void handle_uint(va_list args, int *count)
 	print_unsigned_int(uint_arg, count);
 }
 
+/**
+ * print_number - Prints an integer
+ * @n: Integer to be printed
+ * @count: Pointer to count of printed characters
+ */
 void print_number(int n, int *count)
 {
 	unsigned int num;
@@ -131,6 +156,11 @@ void print_number(int n, int *count)
 	print_unsigned_int(num, count);
 }
 
+/**
+ * print_unsigned_int - Prints an unsigned integer
+ * @n: Unsigned integer to be printed
+ * @count: Pointer to count of printed characters
+ */
 void print_unsigned_int(unsigned int n, int *count)
 {
 	char digit;

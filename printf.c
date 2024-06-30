@@ -80,7 +80,7 @@ int _printf(const char *format, ...)
 void handle_char(va_list args, int *count)
 {
 	char char_arg = va_arg(args, int);
-	
+
 	write(1, &char_arg, 1);
 	(*count)++;
 }
@@ -88,7 +88,7 @@ void handle_char(va_list args, int *count)
 void handle_string(va_list args, int *count)
 {
 	char *str_arg = va_arg(args, char *);
-	
+
 	if (!str_arg)
 		str_arg = "(null)";
 	while (*str_arg)
@@ -102,14 +102,14 @@ void handle_string(va_list args, int *count)
 void handle_int(va_list args, int *count)
 {
 	int int_arg = va_arg(args, int);
-	
+
 	print_number(int_arg, count);
 }
 
 void handle_uint(va_list args, int *count)
 {
 	unsigned int uint_arg = va_arg(args, unsigned int);
-	
+
 	print_unsigned(uint_arg, count);
 }
 

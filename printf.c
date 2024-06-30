@@ -172,5 +172,5 @@ void print_unsigned_int(unsigned int n, int *count)
 
 	digit = (char)((n % 10) + '0');
 	write(1, &digit, 1);
-	(count)++;
+	(*count)++;
 }

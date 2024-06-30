@@ -121,11 +121,11 @@ void print_number(int n, int *count)
 	{
 		write(1, "-", 1);
 		(*count)++;
-		num = -n;
+		num = (unsigned int)(-n);
 	}
 	else
 	{
-		num = n;
+		num = (unsigned int)n;
 	}
 
 	print_unsigned(num, count);
@@ -140,7 +140,7 @@ void print_unsigned(unsigned int n, int *count)
 		print_unsigned(n / 10, count);
 	}
 
-	digit = n % 10 + '\0';
+	digit = (char)((n % 10) + '0';
 	write(1, &digit, 1);
 	(count)++;
 }

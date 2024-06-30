@@ -140,7 +140,7 @@ void print_unsigned(unsigned int n, int *count)
 		print_unsigned(n / 10, count);
 	}
 
-	digit = (char)((n % 10) + '0';
+	digit = (char)((n % 10) + '0');
 	write(1, &digit, 1);
 	(count)++;
 }
